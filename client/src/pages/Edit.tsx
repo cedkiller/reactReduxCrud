@@ -1,11 +1,11 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import {useNavigate, useParams} from 'react-router-dom';
-import Swal from 'sweetalert2';
 import {useDispatch, useSelector} from 'react-redux';
 import type {RootState, AppDispatch} from '../store/store';
-import { setTask, setRecord } from '../store/counter/homeSlice';
-import '../assets/css/Style.css';
+import {setTask, setRecord, getRecordSlice, submitSlice, delSlice, checkTaskSlice, updateTaskSlice} from '../store/slice/homeSlice';
+import Swal from 'sweetalert2';
 import supabase from '../config/config';
+import '../assets/css/Style.css';
 
 function Edit () {
     const navigate = useNavigate();
@@ -17,70 +17,19 @@ function Edit () {
     useEffect(() => {
         getRecord();
         checkTask();
-    },[]) 
+    },[])
 
     const checkTask = async () => {
-        const {data, error} = await supabase.from('record').select('*').eq('id',id);
-
-        if (error) {
-            Swal.fire({
-                title:'Error Getting Task',
-                text:'There has been error in getting task',
-                icon:'error'
-            });
-        }
-
-        else {
-            dispatch(setTask(data[0].task));
-        }
+        checkTaskSlice(Number(id), dispatch);
     }
 
     const getRecord = async () => {
-        const {data, error} = await supabase.from('record').select('*');
-
-        if (error) {
-            Swal.fire({
-                title:'Error Getting Record',
-                text:'There has been error in getting record',
-                icon:'error'
-            })
-        }
-
-        else {
-            dispatch(setRecord(data));
-        }
+        getRecordSlice(dispatch);
     }
 
     const submit = async (e: React.FormEvent) => {
         e.preventDefault();
-
-        const {data, error} = await supabase.from('record').update({task: task}).eq('id',id);
-
-        if (error) {
-            Swal.fire({
-                title:'Error Updating Task',
-                text:'Ther has been error in updating task',
-                icon:'error'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    dispatch(setTask(""));
-                    window.location.reload();
-                }
-            })
-        }
-
-        else {
-            Swal.fire({
-                title:'Task Updated',
-                text:'The task has been updated successfully',
-                icon:'success'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    dispatch(setTask(""));
-                    navigate('/');
-                }
-            })
-        }
+        updateTaskSlice(Number(id), task, dispatch);
     }
 
     const edit = async (id: number) => {
@@ -88,33 +37,7 @@ function Edit () {
     }
 
     const del = async (id: number) => {
-        const {data, error} = await supabase.from('record').delete().eq('id',id);
-
-        if (error) {
-            Swal.fire({
-                title:'Error Deleting Task',
-                text:'There has been error in deleting task',
-                icon:'error'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    dispatch(setTask(""));
-                    window.location.reload();
-                }
-            })
-        }
-
-        else {
-            Swal.fire({
-                title:'Task Deleted',
-                text:'The task has been deleted successfully',
-                icon:'success'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    dispatch(setTask(""));
-                    window.location.reload();
-                }
-            })
-        }
+        delSlice(id, dispatch);
     }
 
     return(
