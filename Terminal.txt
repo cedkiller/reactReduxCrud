@@ -1,0 +1,94 @@
+STEP 1: OPEN TERMINAL AND TYPE THIS
+
+- npm create vite@latest
+- project name: client
+- select: react js
+- select: typescript or javascript
+- cd client
+- npm install axios react-router-dom sweetalert2 jwt-decode bootstrap dotenv @supabase/supabase-js @reduxjs/toolkit react-redux
+
+------------------------------------------------------------------------------------------------------------------------------------------
+
+STEP 2: GO TO THE "vite.config.ts" AND THEN COPY THIS CODE
+
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+
+// https://vite.dev/config/
+export default defineConfig({
+  plugins: [react()],
+  server: {
+    host: true, // Optional: for allowing access from the network
+    port: 3000,
+    open: true, // Optional: open the browser automatically
+  }
+})
+
+------------------------------------------------------------------------------------------------------------------------------------------
+
+STEP 3: RIGHT CLICK THE "client" FOLDER AND THEN OPEN INTEGRATED TERMINAL AND PASTE THIS COMMAND
+
+- npm install @vitejs/plugin-react --save-dev
+
+------------------------------------------------------------------------------------------------------------------------------------------
+
+STEP 4: ADD NEW FILE CALLED ".env" INSIDE IN THIS FILE CONTAINS ALL SECRET KEYS AND URL LIKE "http://localhost:5000"
+
+------------------------------------------------------------------------------------------------------------------------------------------
+
+STEP 5: MANAGE THE MAIN CSS "index.css" AND THEN AFTER THAT PASTE THIS IMPORT ON "App.tsx"
+
+import {BrowserRouter, Routes, Route} from 'react-router-dom';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.bundle.min';
+
+------------------------------------------------------------------------------------------------------------------------------------------
+
+STEP 6: CREATE A FOLDER NAMED "store" INSIDE IN THAT FOLDER CREATE A FILE NAMED "store.ts" AND THEN COPY THIS CODE
+
+import {configureStore} from '@reduxjs/toolkit';
+
+export const store = configureStore({
+    reducer: {
+
+    }
+});
+
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch; 
+
+------------------------------------------------------------------------------------------------------------------------------------------
+
+STEP 7: GO TO "main.tsx" AND THEN COPY THIS CODE
+
+import { StrictMode } from 'react'
+import { createRoot } from 'react-dom/client'
+import './index.css'
+import App from './App.tsx'
+import {Provider} from 'react-redux';
+import {store} from './store/store.ts';
+
+createRoot(document.getElementById('root')!).render(
+  <StrictMode>
+    <Provider store={store}>
+      <App />
+    </Provider>
+  </StrictMode>,
+)
+
+
+------------------------------------------------------------------------------------------------------------------------------------------
+
+STEP 8: CREATE A FOLDER INSIDE OF "store" NAMED THE FOLDER "counter" INSIDE OF THAT FOLDER YOU WILL CREATE A FILES THAT CONTAINS ALL
+OF THE GLOBAL VARIABLE AND ACTIONS EXAMPLE OF THE FILE NAMED IS homeSlice.ts
+
+------------------------------------------------------------------------------------------------------------------------------------------
+
+
+STEP 9: UNDERSTAND THE ALGORITHM OF THE "store.ts" AND THOSE FILE IN THE COUNTER JUST LOOK AT THE GITHUB CODE OF "reactReduxCrud"
+
+------------------------------------------------------------------------------------------------------------------------------------------
+
+STEP 10: RUN THE PROJECT
+
+- npm run dev
