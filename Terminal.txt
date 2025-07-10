@@ -5,7 +5,8 @@ STEP 1: OPEN TERMINAL AND TYPE THIS
 - select: react js
 - select: typescript or javascript
 - cd client
-- npm install axios react-router-dom sweetalert2 jwt-decode bootstrap dotenv @supabase/supabase-js @reduxjs/toolkit react-redux tailwindcss
+- npm install axios react-router-dom sweetalert2 jwt-decode bootstrap dotenv @supabase/supabase-js @reduxjs/toolkit react-redux 
+- npm install tailwindcss @tailwindcss/vite
 
 ------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -13,10 +14,11 @@ STEP 2: GO TO THE "vite.config.ts" AND THEN COPY THIS CODE
 
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
+import tailwindcss from '@tailwindcss/vite'
 
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [react()],
+  plugins: [react(), tailwindcss()],
   server: {
     host: true, // Optional: for allowing access from the network
     port: 3000,
@@ -44,9 +46,7 @@ import 'bootstrap/dist/js/bootstrap.bundle.min';
 
 AND COPY AND PASTE THIS CODE IN THE index.css
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
 ------------------------------------------------------------------------------------------------------------------------------------------
 
