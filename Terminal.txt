@@ -5,7 +5,7 @@ STEP 1: OPEN TERMINAL AND TYPE THIS
 - select: react js
 - select: typescript or javascript
 - cd client
-- npm install axios react-router-dom sweetalert2 jwt-decode bootstrap dotenv @supabase/supabase-js @reduxjs/toolkit react-redux
+- npm install axios react-router-dom sweetalert2 jwt-decode bootstrap dotenv @supabase/supabase-js @reduxjs/toolkit react-redux tailwindcss
 
 ------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -41,6 +41,12 @@ STEP 5: MANAGE THE MAIN CSS "index.css" AND THEN AFTER THAT PASTE THIS IMPORT ON
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
+
+AND COPY AND PASTE THIS CODE IN THE index.css
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 ------------------------------------------------------------------------------------------------------------------------------------------
 
