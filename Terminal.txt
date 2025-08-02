@@ -87,6 +87,7 @@ export const store = configureStore({
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch; 
 
+
 ------------------------------------------------------------------------------------------------------------------------------------------
 
 STEP 7: GO TO "main.tsx" AND THEN COPY THIS CODE
@@ -109,8 +110,19 @@ createRoot(document.getElementById('root')!).render(
 
 ------------------------------------------------------------------------------------------------------------------------------------------
 
-STEP 8: CREATE A FOLDER INSIDE OF "store" NAMED THE FOLDER "counter" INSIDE OF THAT FOLDER YOU WILL CREATE A FILES THAT CONTAINS ALL
+STEP 8: CREATE A FOLDER INSIDE OF "store" NAMED THE FOLDER "slice" INSIDE OF THAT FOLDER YOU WILL CREATE A FILES THAT CONTAINS ALL
 OF THE GLOBAL VARIABLE AND ACTIONS EXAMPLE OF THE FILE NAMED IS homeSlice.ts
+
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import type { PayloadAction } from '@reduxjs/toolkit';
+import supabase from '../../config/config';
+import Swal from 'sweetalert2';
+
+//interface here
+
+export const {} = homeSlice.actions;
+
+export default homeSlice.reducer;
 
 ------------------------------------------------------------------------------------------------------------------------------------------
 
